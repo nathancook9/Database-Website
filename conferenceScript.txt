@@ -1,0 +1,208 @@
+drop database if exists conferenceDB;
+create database if not exists conferenceDB;
+use conferenceDB;
+
+create table attendee(
+    id integer not null primary key,
+    fName varchar(40),
+    lName varchar(40),
+    fee Enum("0", "50", "100"));
+
+create table room (
+    num integer not null primary key,
+    numbed integer);
+
+create table student(
+    id integer not null primary key,
+    roomNum integer not null,
+    foreign key (id) references attendee (id) on delete cascade,
+    foreign key (roomNum) references room(num));
+
+create table professional(
+    id integer not null primary key,
+    foreign key (id) references attendee (id) on delete cascade);
+
+
+create table speaker(
+    id integer not null primary key,
+    foreign key (id) references attendee (id) on delete cascade);
+
+create table session(
+    location integer not null,
+    sessionDate date not null,
+    startTime time not null,
+    endTime time not null,
+    speakerID integer not null,
+    primary key(location, sessionDate, startTime),
+    foreign key (speakerID) references speaker (id) on delete cascade);
+
+create table company(
+    name varchar(120) not null primary key,
+    emailsSent integer,
+    level Enum("Gold", "Bronze", "Platinum", "Silver"));
+
+create table sponsor(
+    id integer not null primary key,
+    companyName varchar(120) not null,
+    foreign key (id) references attendee (id) on delete cascade,
+    foreign key (companyName) references company (name) on delete cascade);
+
+create table jobAd(
+    companyName varchar(120) not null,
+    jobTitle varchar(250) not null,
+    salary integer,
+    location varchar(250),
+    primary key (companyName, jobTitle),
+    foreign key (companyName) references company (name) on delete cascade);
+
+
+create table member(
+    id integer not null primary key,
+    fName varchar(120) not null,
+    lName varchar(120) not null);
+
+
+create table subcommittee(
+    name varchar(120) not null primary key,
+    chairID integer not null,
+    foreign key (chairID) references member (id));
+
+create table memberOf(
+    id integer not null,
+    subcommittee varchar(120) not null,
+    foreign key (id) references member (id),
+    foreign key (subcommittee) references subcommittee (name));
+
+
+INSERT INTO attendee (id, fName, lName, fee) VALUES
+(100, 'Connor', 'McDavid', '50'),
+(101, 'Leon', 'Draisital', '50'),
+(102, 'Jason', 'Robertson', '50'),
+(103, 'Nick', 'Robertson', '50'),
+(104, 'Zack', 'Smith', '50'),
+(105, 'John', 'Jones', '50'),
+(106, 'Fin', 'Hill', '50'),
+(200, 'Mitch', 'Marner', '100'),
+(201, 'John', 'Tavares', '100'),
+(202, 'Mitchel', 'Marn', '100'),
+(203, 'Tyler', 'Blevins', '100'),
+(204, 'Mistika', 'Roger', '100'),
+(205, 'Sheldon', 'Keefe', '100'),
+(300, 'Ryan', 'Miller', '0'),
+(301, 'Catherine', 'Parke', '0'),
+(302, 'John', 'Carlson', '0'),
+(303, 'Tom', 'Wilson', '0'),
+(304, 'Jack', 'Novak', '0'),
+(305, 'Zack', 'Cook', '0'),
+(306, 'Dave', 'Cook', '0'),
+(307, 'Andrew', 'Diab', '0'),
+(500, 'Tim', 'Stuzle', '0'),
+(501, 'Jake', 'Sanderson', '0'),
+(502, 'Mike', 'Amadio', '0'),
+(503, 'Josh', 'Norris', '0'),
+(504, 'Drake', 'Batherson', '0'),
+(505, 'Anton', 'Forsberg', '0');
+
+
+INSERT INTO room (num, numbed) VALUES
+(201, 2),
+(202, 1),
+(203, 1),
+(301, 2),
+(302, 2),
+(303, 2);
+
+
+INSERT INTO student (id, roomNum) VALUES
+(100, 201),
+(101, 202),
+(102, 203),
+(103, 301),
+(104, 302),
+(105, 303),
+(106, 201);
+
+
+INSERT INTO professional (id) VALUES
+(200),
+(201),
+(202),
+(203),
+(204),
+(205);
+
+
+INSERT INTO speaker (id) VALUES
+(500),
+(501),
+(502),
+(503),
+(504),
+(505);
+
+
+INSERT INTO company (name, emailsSent, level) VALUES
+('Nvidia', 10, 'Gold'),
+('Tesla', 5, 'Silver'),
+('Porsche', 15, 'Platinum'),
+('RBC', 7, 'Bronze'),
+('Capital One', 9, 'Silver'),
+('Intel', 12, 'Gold'),
+('Apple', 20, 'Platinum'),
+('AMD', 6, 'Bronze');
+
+
+INSERT INTO sponsor (id, companyName) VALUES
+(300, 'Nvidia'),
+(301, 'Tesla'),
+(302, 'Porsche'),
+(303, 'RBC'),
+(304, 'Capital One'),
+(305, 'Intel'),
+(306, 'Apple'),
+(307, 'AMD');
+
+
+INSERT INTO jobAd (companyName, jobTitle, salary, location) VALUES
+('Nvidia', 'Software Engineer', 95000, 'Toronto'),
+('Tesla', 'Data Scientist', 110000, 'Vancouver'),
+('Porsche', 'Hydraulics Engineer', 85000, 'Calgary'),
+('RBC', 'Machine Learning Engineer', 120000, 'Ottawa'),
+('Capital One', 'Network Administrator', 78000, 'Montreal');
+
+
+INSERT INTO member (id, fName, lName) VALUES
+(1, 'Sydney', 'Crosby'),
+(2, 'Jason', 'Smith'),
+(3, 'Erik', 'Karlsson'),
+(4, 'J.T', 'Miller'),
+(5, 'Nathan', 'Cook'),
+(6, 'John', 'Couper'),
+(7, 'Jessica', 'Verstappen');
+
+
+INSERT INTO subcommittee (name, chairID) VALUES
+('Logistics', 1),
+('Sponsorship', 2),
+('Workshops', 3),
+('Security', 4),
+('Cleaning', 5),
+('Hospitality', 6);
+
+
+INSERT INTO memberOf (id, subcommittee) VALUES
+(1, 'Logistics'),
+(2, 'Sponsorship'),
+(3, 'Workshops'),
+(4, 'Security'),
+(5, 'Cleaning'),
+(6, 'Hospitality'),
+(7, 'Cleaning');
+
+INSERT INTO session (location, sessionDate, startTime, endTime, speakerID) VALUES
+(101, '2025-06-15', '09:00:00', '10:30:00', 500),
+(202, '2025-06-16', '11:00:00', '12:30:00', 501),
+(303, '2025-06-17', '10:00:00', '11:30:00', 502),
+(404, '2025-06-17', '11:00:00', '12:30:00', 503),
+(505, '2025-06-18', '09:00:00', '10:30:00', 504),
+(606, '2025-06-18', '12:00:00', '13:30:00', 505);
