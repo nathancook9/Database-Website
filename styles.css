@@ -1,0 +1,272 @@
+/* Basic Reset and Body
+http://localhost/CISC332_ConferenceWebApp/landing.php */
+body {
+    height: 100vh;
+    margin: 0px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #bdc3c7; */
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse;
+    /* width: 70vw; */
+    margin-top: 20px;
+    background-color: #ecf0f1;
+    color: black;
+}
+
+
+th, td {
+    padding: 12px 60px 12px 15px;
+    border: 1px solid #bdc3c7;
+    text-align: left;
+}
+
+th {
+    background-color: darkblue; /* Matches sidebar button */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    transition: 0.4s;
+    background-color: lightgreen;
+}
+
+/* Sidebar */
+.navigation{
+    display: flex;
+    justify-content: center;
+    gap: 1.4vh;
+    width: 100%;
+    background-color: #256c82;
+    /* background-color: rgb(94, 94, 202); */
+    /* border: 1px solid black; */
+}
+
+.navigation-bottom {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 1.4vh;
+    background-color: #A8D5E3;
+    /* background-color: rgb(94, 94, 202); */
+    /* border: 1px solid black; */
+    padding: 1vh 0 1vh;
+}
+
+.navigation a{
+    font-size: 2.0vh;
+    padding: 1.7vh;
+    color: black;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    /* border: 1px solid black; */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.navigation-bottom a {
+    font-size: 1.6vh;
+    color: black;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    /* border: 1px solid black; */
+    /* margin: 10px; */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.navigation button:hover, .navigation-bottom button:hover  {
+    transition: 0.5s;
+    background-color: rgb(35, 90, 124);
+}
+
+/* Dropdown Container */
+.dropdown-container {
+    margin: 10px 0;
+}
+
+/* Styled Select */
+.dropdown-container select {
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid #256c82;
+    font-size: 16px;
+    width: 250px;
+}
+
+/* Optional: Label Styling */
+.dropdown-container label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: black;
+}
+
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    /* background-color: rgb(94, 94, 202); */
+    padding: 20px;
+}
+
+.main-content button {
+    padding: 1vh 1vh;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.main-content button:hover {
+    background-color: #2980b9;
+}
+
+img{
+    margin-top: 4vh;
+}
+
+
+
+
+.written-content {
+    text-align: center;
+    padding: 40px;
+    flex: 1;
+}
+
+.written-content p {
+    padding: 40px;
+}
+
+
+/*Attendees main*/
+.main-attendees {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: start;
+    padding-bottom: 2vh;
+}
+
+.top-text {
+    /* background-color: rgb(94, 94, 202); */
+    /* background-color: #c9222a; */
+    background-color: #c7ecf7;
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+    padding: 12px 60px 12px 15px;
+    border: 1px solid #bdc3c7;
+    text-align: left;
+    background-color: purple;
+}
+
+
+.main-sponsor, .main-fee {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(94, 94, 202); */
+    margin: 2vw;
+}
+
+
+.main-form .dropdown-container form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+
+.main-intake {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+}
+
+.main-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(94, 94, 202); */
+}
+
+.main-add form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh;
+}
+
+.form{
+    text-align: center;
+    padding: 1vh;
+    margin-top: 1vh;
+}
+
+.main-add button{
+    margin-top: 1vh;
+    width: 7vw;
+    text-align: center;
+    color: white;
+    padding: 1vh;
+    background-color: #30cf5a;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+footer{
+    height: 6vh;
+    background-color: #256c82;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*pop ups*/
+.success-message{
+    margin: 0px;
+    color: white;
+    background-color: green;
+    text-align: center;
+}
+
+.no-message{
+    margin: 0px;
+    color: white;
+    background-color: red;
+    text-align: center;
+}
+
+.success-message-del{
+    margin: 0px;
+    color: green;
+    text-align: center;
+}
+
+.no-message-del{
+    margin: 0px;
+    color: red;
+    text-align: center;
+}
